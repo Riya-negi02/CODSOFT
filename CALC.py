@@ -3,6 +3,7 @@ window= Tk()
 window.title("Simple calculator")
 window.geometry('800x200')
 
+#logic
 def calculate():
     try:
         num1= float(entry1.get())
@@ -25,20 +26,21 @@ def calculate():
         result_label.config(text=f"Result:{result}")
     except ValueError:
         result_label.config(text=f"Result:INVALID INPUT. Enter numbers")
-
+#number1
 label1= Label(window, text="NUMBER 1:", background='lavender')
 label1.config(font=("microsoft himalaya",20, "bold"))
 label1.grid(row=0, column=0, padx=30, pady=15)
 entry1= Entry(window)
 entry1.grid(row=0, column=1, padx=30, pady=15)
 
+#number2
 label2= Label(window, text="NUMBER 2:", background='lavender')
 label2.config(font=("microsoft himalaya",20, "bold"))
 label2.grid(row=1, column=0, padx=30, pady=15)
 entry2= Entry(window)
 entry2.grid(row=1, column=1, padx=30, pady=15)
 
-
+#selection of operation
 operation_var= StringVar()
 operation_var.set("+")
 
@@ -46,30 +48,36 @@ label3= Label(window, text="Operation:", background='lavender')
 label3.config(font=("microsoft himalaya",20, "bold"))
 label3.grid(row=2, column=0, padx=30, pady=15)
 
+#declaring operation frame
 operations_frame= Frame(window)
 operations_frame.grid(row=2, column=1, padx=30, pady=15)
 
-
+#function to set an operation
 def set_operation(op):
     operation_var.set(op)
 
+#add button
 button_add= Button(operations_frame, text='+', command= lambda: set_operation("+"), background='cyan')
 button_add.pack(side=LEFT, padx=10)
 
+#subtraction button
 button_sub= Button(operations_frame, text='-', command= lambda: set_operation("-"),background='cyan')
 button_sub.pack(side=LEFT, padx=10)
 
+#multiplication button
 button_mul= Button(operations_frame, text='*', command= lambda: set_operation("*"),background='cyan')
 button_mul.pack(side=LEFT, padx=10)
 
+#division button
 button_div= Button(operations_frame, text='/', command= lambda: set_operation("/"),background='cyan')
 button_div.pack(side=LEFT, padx=10)
 
-
+#submit button
 submit_button= Button(window, text='CALCULATE',command= calculate, background='lavender')
 submit_button.config(font=("microsoft himalaya",20, "bold"))
 submit_button.grid(row=3, column=0, columnspan=1, pady=30)
 
+#result
 result_label= Label(window, text="Result:",background='lavender')
 result_label.config(font=("microsoft himalaya",20, "bold"))
 result_label.grid(row=4, column=0, columnspan=1, pady=30)
