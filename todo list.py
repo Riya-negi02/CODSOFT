@@ -2,8 +2,9 @@ import tkinter
 from tkinter import messagebox
 
 tasks={}
-task_id_calculator= 0
+task_id_calculator= 0  #initialize to zero
 
+#adding a task
 def add_task():
     global task_id_calculator
     task_string= task_entry.get()
@@ -15,6 +16,7 @@ def add_task():
     else:
         messagebox.showwarning("Input Error","Please enter a task")
 
+#function for updating to do list after any changes
 def update_task_list():
     task_listbox.delete(0, tkinter.END)
     for task_id, task_info in tasks.items():
@@ -26,6 +28,7 @@ def update_task_list():
             display_text=task_text
             task_listbox.insert(tkinter.END, display_text)
 
+#function to select task for desired function
 def get_selected_task_id():
     try:
         selected_index= task_listbox.curselection()[0]
@@ -37,7 +40,8 @@ def get_selected_task_id():
         return None
     except IndexError:
         return None
-    
+
+#function to delete the selected task
 def delete_task():
     task_to_delete_id = get_selected_task_id()
     if task_to_delete_id is not None:
@@ -46,6 +50,7 @@ def delete_task():
     else:
        messagebox.showwarning("Selection Error", "Please select a task to delete")
 
+#function to checkmark the selected task
 def check_task():
     task_to_check_id= get_selected_task_id()
     if task_to_check_id is not None:
@@ -53,7 +58,8 @@ def check_task():
         update_task_list()
     else:
         messagebox.showwarning("warning","Could not find selected task")
-    
+
+#function to uncheck the checked task
 def uncheck_task():
     task_to_uncheck_id = get_selected_task_id()
     if task_to_uncheck_id is not None:
@@ -62,12 +68,12 @@ def uncheck_task():
     else:
         messagebox.showwarning("warning","Could not find selected task")
     
-
+#GUI setup
 window= tkinter.Tk()
 window.title("List")
 window.configure(bg='beige')
 
-
+#Title Label
 label= tkinter.Label(window,text="TO-DO LIST", font=('Microdoft Himalaya',18,'bold'), bg='Lavender').pack(pady=10)
 window.geometry('400x400')
 
@@ -92,6 +98,7 @@ check_button.pack(side=tkinter.LEFT, padx=5)
 uncheck_button = tkinter.Button(button_frame, text="uncross Task", command=uncheck_task, bg='cyan')
 uncheck_button.pack(side=tkinter.LEFT, padx=10)
 
+#listbox to view the to do list
 task_listbox= tkinter.Listbox(window, selectmode= tkinter.SINGLE, bg='lavender', width= 40, height= 40)
 task_listbox.pack(pady=10)
 
